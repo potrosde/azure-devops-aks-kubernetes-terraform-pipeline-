@@ -11,8 +11,6 @@
 - Install below listed two plugins in your respective Azure DevOps Organization
 - Discuss about which plugin to use
 - We are going to use plugin-2 as on today it is very actively managed and good reviews and good features
-- [Plugin-1: Terraform by Microsoft Devlabs](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks)
-- [Plugin-2: Terraform Build & Release Tasks](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform)
 
 
 ## Step-03: Review Terraform Manifests
@@ -82,54 +80,20 @@
 
 
 
-## Step-04: Create Github Repository
-
-### Create Github Repository in Github
-- Create Repository in your github
-- Name: azure-devops-aks-kubernetes-terraform-pipeline
-- Descritpion: Provision AKS Cluster using Azure DevOps Pipelines
-- Repository Type: Public or Private (Your Choice)
-- Click on **Create Repository**
-
-### Copy files, Initialize Local Repo, Push to Remote Git Repo
-```
-# Create folder in local deskop
-cd azure-devops-aks-demo-repos
-mkdir azure-devops-aks-kubernetes-terraform-pipeline
-cd azure-devops-aks-kubernetes-terraform-pipeline
-
-# Copy folders from Git-Repo-Files folder to new folder created in local desktop
-kube-manifests
-terraform-manifests
-pipeline-backups
 
 
-# Initialize Git Repo
-cd azure-devops-aks-kubernetes-terraform-pipeline
-git init
-
-# Add Files & Commit to Local Repo
-git add .
-git commit -am "First Commit"
-
-# Add Remote Origin and Push to Remote Repo
-git remote add origin https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-pipeline.git
-git push --set-upstream origin master 
-
-# Verify the same on Github Repository
-Refersh browser for Repo you have created
-Example: https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-pipeline.git
-```     
 
 
-## Step-05: Create New Azure DevOps Project for IAC
+
+
+## Step-10: Create New Azure DevOps Project for IAC
 - Go to -> Azure DevOps -> Select Organization -> aksdemo2 ->  Create New Project
 - Project Name: terraform-azure-aks
 - Project Descritpion: Provision Azure AKS Cluster using Azure DevOps & Terraform
 - Visibility: Private
 - Click on **Create**
 
-## Step-07: Create Azure RM Service Connection for Terraform Commands
+## Step-11: Create Azure RM Service Connection for Terraform Commands
 - This is a pre-requisite step required during Azure Pipelines
 - We can create from Azure Pipelines -> Terraform commands screen but just to be in a orderly manner we are creating early.
 - Go to -> Azure DevOps -> Select Organization -> Select project **terraform-azure-aks**
@@ -146,7 +110,7 @@ Example: https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-
 - Click on **SAVE**
 
 
-## Step-08: VERY IMPORTANT FIX: Provide Permission to create Azure AD Groups
+## Step-12: VERY IMPORTANT FIX: Provide Permission to create Azure AD Groups
 - Provide permission for Service connection created in previous step to create Azure AD Groups
 - Go to -> Azure DevOps -> Select Organization -> Select project **terraform-azure-aks**
 - Go to **Project Settings** -> Pipelines -> Service Connections 
@@ -162,7 +126,7 @@ Example: https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-
 
 
 
-## Step-09: Create SSH Public Key for Linux VMs
+## Step-13: Create SSH Public Key for Linux VMs
 - Create this out of your git repository 
 - **Important Note:**  We should not have these files in our git repos for security Reasons
 ```
@@ -185,14 +149,14 @@ Private File: aks-terraform-devops-ssh-key-ububtu (To be stored safe with us)
 Public File: aks-terraform-devops-ssh-key-ububtu.pub (To be uploaded to Azure DevOps)
 ```
 
-## Step-10: Upload file to Azure DevOps as Secure File
+## Step-14: Upload file to Azure DevOps as Secure File
 - Go to Azure DevOps -> aksdemo2 -> terraform-azure-aks -> Pipelines -> Library
 - Secure File -> Upload file named **aks-terraform-devops-ssh-key-ububtu.pub**
 - Open the file and click on **Pipeline permissions -> Authorize for use in all pipelines**
 - Click on **SAVE**
 
 
-## Step-11: Create Azure Pipeline to Provision AKS Cluster
+## Step-15: Create Azure Pipeline to Provision AKS Cluster
 - Go to -> Azure DevOps -> Select Organization -> Select project **terraform-azure-aks**
 - Go to Pipelines -> Pipelines -> Create Pipeline
 ### Where is your Code?
